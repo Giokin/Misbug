@@ -1,0 +1,604 @@
+[gd_scene load_steps=11 format=3 uid="uid://bqvf6s8o6nqwo"]
+
+[ext_resource type="Script" path="res://Scripts/game_engine_hud.gd" id="1_1fsvc"]
+[ext_resource type="Texture2D" uid="uid://dmih4w3u56smj" path="res://Textures/misbug.png" id="1_mvn6v"]
+[ext_resource type="Texture2D" uid="uid://54mmfnbf03hl" path="res://Animations/Jump (32x32).png" id="3_feih6"]
+[ext_resource type="Texture2D" uid="uid://jwasljxklnw5" path="res://Textures/Mushroom.png" id="4_u4rjr"]
+[ext_resource type="Texture2D" uid="uid://c8ffbn6vt8qy4" path="res://Textures/Block.png" id="5_jnnh8"]
+[ext_resource type="Texture2D" uid="uid://bs6vcrg3v7625" path="res://Textures/Idle.png" id="6_p5qsn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8cayh"]
+bg_color = Color(0.113725, 0.133333, 0.160784, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugimv"]
+bg_color = Color(0.211765, 0.239216, 0.290196, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mmwwg"]
+bg_color = Color(0.211765, 0.239216, 0.290196, 1)
+border_width_top = 2
+border_color = Color(0.356863, 0.580392, 0.776471, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5l6tn"]
+bg_color = Color(0.129412, 0.14902, 0.180392, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="GameEngineHUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1fsvc")
+
+[node name="MainVBOX" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ToolbarPanel" type="Panel" parent="MainVBOX"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_8cayh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainVBOX/ToolbarPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Logo_Debug" type="HBoxContainer" parent="MainVBOX/ToolbarPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Debug" type="MarginContainer" parent="MainVBOX/ToolbarPanel/HBoxContainer/Logo_Debug"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Button" type="Button" parent="MainVBOX/ToolbarPanel/HBoxContainer/Logo_Debug/Debug"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+toggle_mode = true
+text = "DEBUG"
+
+[node name="Panel" type="Panel" parent="MainVBOX/ToolbarPanel/HBoxContainer/Logo_Debug"]
+layout_mode = 2
+
+[node name="Logo" type="TextureRect" parent="MainVBOX/ToolbarPanel/HBoxContainer/Logo_Debug/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -85.0
+offset_right = 85.0
+offset_bottom = 64.0
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_mvn6v")
+
+[node name="Options" type="HBoxContainer" parent="MainVBOX/ToolbarPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="MainVBOX/ToolbarPanel/HBoxContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Play" type="Button" parent="MainVBOX/ToolbarPanel/HBoxContainer/Options/MarginContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MainVBOX/ToolbarPanel/HBoxContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Pause" type="Button" parent="MainVBOX/ToolbarPanel/HBoxContainer/Options/MarginContainer2"]
+layout_mode = 2
+text = "Pause
+"
+
+[node name="MarginContainer3" type="MarginContainer" parent="MainVBOX/ToolbarPanel/HBoxContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Restart" type="Button" parent="MainVBOX/ToolbarPanel/HBoxContainer/Options/MarginContainer3"]
+layout_mode = 2
+text = "Restart"
+
+[node name="DebugMenu" type="HBoxContainer" parent="MainVBOX"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SceneMenu" type="MarginContainer" parent="MainVBOX/DebugMenu"]
+visible = false
+layout_mode = 2
+
+[node name="LeftPanel" type="Panel" parent="MainVBOX/DebugMenu/SceneMenu"]
+custom_minimum_size = Vector2(220, 400)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_ugimv")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainVBOX/DebugMenu/SceneMenu/LeftPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="SceneList" type="VFlowContainer" parent="MainVBOX/DebugMenu/SceneMenu/LeftPanel/MarginContainer"]
+layout_direction = 2
+layout_mode = 2
+theme_override_constants/v_separation = 20
+
+[node name="Label" type="Label" parent="MainVBOX/DebugMenu/SceneMenu/LeftPanel/MarginContainer/SceneList"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerButton" type="Button" parent="MainVBOX/DebugMenu/SceneMenu/LeftPanel/MarginContainer/SceneList/Label"]
+layout_mode = 0
+offset_right = 177.0
+offset_bottom = 40.0
+text = "Player"
+icon = ExtResource("3_feih6")
+
+[node name="Label2" type="Label" parent="MainVBOX/DebugMenu/SceneMenu/LeftPanel/MarginContainer/SceneList"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemiesButton" type="Button" parent="MainVBOX/DebugMenu/SceneMenu/LeftPanel/MarginContainer/SceneList/Label2"]
+layout_mode = 0
+offset_right = 177.0
+offset_bottom = 40.0
+text = "Enemies"
+icon = ExtResource("4_u4rjr")
+
+[node name="Label3" type="Label" parent="MainVBOX/DebugMenu/SceneMenu/LeftPanel/MarginContainer/SceneList"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlatformsButton" type="Button" parent="MainVBOX/DebugMenu/SceneMenu/LeftPanel/MarginContainer/SceneList/Label3"]
+layout_mode = 0
+offset_right = 176.0
+offset_bottom = 42.0
+text = "Platforms
+"
+icon = ExtResource("5_jnnh8")
+
+[node name="Label4" type="Label" parent="MainVBOX/DebugMenu/SceneMenu/LeftPanel/MarginContainer/SceneList"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StructuresButton" type="Button" parent="MainVBOX/DebugMenu/SceneMenu/LeftPanel/MarginContainer/SceneList/Label4"]
+layout_mode = 0
+offset_right = 177.0
+offset_bottom = 40.0
+text = "Structures
+"
+icon = ExtResource("6_p5qsn")
+
+[node name="Label5" type="Label" parent="MainVBOX/DebugMenu/SceneMenu/LeftPanel/MarginContainer/SceneList"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldButton" type="Button" parent="MainVBOX/DebugMenu/SceneMenu/LeftPanel/MarginContainer/SceneList/Label5"]
+layout_mode = 0
+offset_right = 177.0
+offset_bottom = 40.0
+text = "The World
+"
+
+[node name="Panel" type="Panel" parent="MainVBOX/DebugMenu/SceneMenu/LeftPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.0875
+anchor_right = 0.181818
+anchor_bottom = 0.0125
+grow_horizontal = 2
+scale = Vector2(2.10779, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_mmwwg")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="MainVBOX/DebugMenu/SceneMenu/LeftPanel/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.5114
+offset_top = -12.0
+offset_right = 35.4886
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.472, 0.837)
+text = "Scene"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Space" type="Control" parent="MainVBOX/DebugMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InsepectorMenu" type="MarginContainer" parent="MainVBOX/DebugMenu"]
+layout_mode = 2
+
+[node name="LeftPanel" type="Panel" parent="MainVBOX/DebugMenu/InsepectorMenu"]
+custom_minimum_size = Vector2(220, 400)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_ugimv")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="Panel" type="Panel" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5l6tn")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ConsolePanel" type="Panel" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/ConsolePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.243
+offset_bottom = 0.0179996
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.188263, 0.183368, 0.209047, 1)
+
+[node name="Label" type="Label" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/ConsolePanel/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.139423
+anchor_top = -0.138889
+anchor_right = 0.839423
+anchor_bottom = 1.03333
+offset_top = 2.5
+offset_right = 62.4
+offset_bottom = 4.4
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+text = "Console"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/ConsolePanel"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 25.0
+offset_right = 198.0
+offset_bottom = -6.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 10
+text = "Error: lorem ipsum
+Error: turkiye number one"
+
+[node name="ColliderPanel" type="Panel" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/ColliderPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.243
+offset_bottom = 0.0179996
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.188263, 0.183368, 0.209047, 1)
+
+[node name="Label" type="Label" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/ColliderPanel/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.139423
+anchor_top = -0.138889
+anchor_right = 0.839423
+anchor_bottom = 1.03333
+offset_top = 2.5
+offset_right = 62.4
+offset_bottom = 4.4
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+text = "Collider"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CheckButton" type="CheckButton" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/ColliderPanel"]
+layout_mode = 0
+offset_top = 18.0
+offset_right = 139.0
+offset_bottom = 53.0
+scale = Vector2(1.5, 1.5)
+theme_override_font_sizes/font_size = 13
+button_pressed = true
+text = "Collider"
+
+[node name="ScalePanel" type="Panel" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/ScalePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.243
+offset_bottom = 0.0179996
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.188263, 0.183368, 0.209047, 1)
+
+[node name="Label" type="Label" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/ScalePanel/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.139423
+anchor_top = -0.138889
+anchor_right = 0.839423
+anchor_bottom = 1.03333
+offset_top = 2.5
+offset_right = 62.4
+offset_bottom = 4.4
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+text = "Scale"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/ScalePanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 2.0
+offset_top = -6.5
+offset_right = -8.0
+offset_bottom = 29.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/ScalePanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/ScalePanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Scale"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/ScalePanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 0.5
+max_value = 2.0
+step = 0.25
+value = 1.5
+
+[node name="GravityPanel" type="Panel" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/GravityPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.243
+offset_bottom = 0.0179996
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.188263, 0.183368, 0.209047, 1)
+
+[node name="Label" type="Label" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/GravityPanel/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.139423
+anchor_top = -0.138889
+anchor_right = 0.839423
+anchor_bottom = 1.03333
+offset_top = 2.5
+offset_right = 62.4
+offset_bottom = 4.4
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+text = "Gravity"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/GravityPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.24
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/GravityPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/GravityPanel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Gravity"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/GravityPanel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = -1.0
+max_value = 1.0
+step = 0.25
+value = 1.0
+
+[node name="VelocityPanel" type="Panel" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/VelocityPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.243
+offset_bottom = 0.0179996
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.188263, 0.183368, 0.209047, 1)
+
+[node name="Label" type="Label" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/VelocityPanel/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.139423
+anchor_top = -0.138889
+anchor_right = 0.839423
+anchor_bottom = 1.03333
+offset_top = 2.5
+offset_right = 62.4
+offset_bottom = 4.4
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+text = "Velocity
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/VelocityPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.24
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/VelocityPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/VelocityPanel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Velocity
+"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/VelocityPanel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 10.0
+value = 10.0
+
+[node name="Panel" type="Panel" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.613636
+anchor_top = -0.095
+anchor_right = 0.795454
+anchor_bottom = 0.005
+grow_horizontal = 2
+scale = Vector2(2.10779, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_mmwwg")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.1534
+offset_top = -14.0
+offset_right = 55.8466
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.472119, 1)
+text = "Inspector"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="toggled" from="MainVBOX/ToolbarPanel/HBoxContainer/Logo_Debug/Debug/Button" to="." method="_on_debug_toggled"]
+[connection signal="toggled" from="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/ColliderPanel/CheckButton" to="." method="_on_Collider_toggled"]
+[connection signal="value_changed" from="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/ScalePanel/VBoxContainer/HBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="MainVBOX/DebugMenu/InsepectorMenu/LeftPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer/GravityPanel/VBoxContainer/HBoxContainer3/HSlider" to="." method="_on_Gravity_value_changed"]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dw5jsyuph6g23"]
+
+[ext_resource type="Shader" path="res://Shaders/black&white.gdshader" id="1_2biss"]
+[ext_resource type="Script" path="res://Scripts/black&white.gd" id="2_5dchc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_650hh"]
+shader = ExtResource("1_2biss")
+shader_parameter/tint = null
+shader_parameter/shadow_tint = null
+
+[node name="ScreenTint" type="ColorRect"]
+material = SubResource("ShaderMaterial_650hh")
+offset_right = 233.0
+offset_bottom = 176.0
+script = ExtResource("2_5dchc")
